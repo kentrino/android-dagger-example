@@ -3,12 +3,14 @@ package jp.furyu.dagger_example.di
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import jp.furyu.dagger_example.App
 import javax.inject.Singleton
 
 
 @Singleton
 @Component(modules = [
+    AndroidSupportInjectionModule::class,
     NetworkModule::class
 ])
 interface AppComponent : AndroidInjector<App> {
