@@ -1,8 +1,11 @@
 package jp.furyu.dagger_example.di
 
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import jp.furyu.dagger_example.App
+import jp.furyu.dagger_example.util.ApplicationJsonAdapterFactory
+import jp.furyu.dagger_example.util.InstantAdapter
 import jp.furyu.dagger_example.util.Memory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -25,4 +28,12 @@ open class NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(app: App): OkHttpClient = buildOkHttpClient(app)
+
+    @Singleton
+    @Provides
+    fun provideMoshi() = Moshi.Builder()
+            .add(ApplicationJsonAdapterFactory.INSTANCE)
+            .add(InstantAdapter.INSTANCE)
+            .build()
+
 }

@@ -53,4 +53,16 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    // Moshi
+    implementation 'com.squareup.moshi:moshi:1.5.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.5.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.3.0'
+    implementation 'se.ansman.kotshi:api:1.0.2'
+    kapt 'se.ansman.kotshi:compiler:1.0.2'
+
+    // threeten
+    // TODO: Java6, Java7向けにdate-time機能をバックポートしたものらしい
+    // 参考リポジトリにはこの依存関係は書かれていない
+    implementation 'org.threeten:threetenbp:1.3.2'
 }
