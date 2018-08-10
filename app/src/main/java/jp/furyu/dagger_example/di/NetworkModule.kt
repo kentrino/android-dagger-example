@@ -9,6 +9,9 @@ import jp.furyu.dagger_example.util.InstantAdapter
 import jp.furyu.dagger_example.util.Memory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -36,4 +39,19 @@ open class NetworkModule {
             .add(InstantAdapter.INSTANCE)
             .build()
 
+    // TODO: @Named(hoge)とあったのを消したが何だったのか
+    @Provides
+    @Singleton
+    fun provideRetrofitGithub(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
+            // TODO: このAPIのURLは環境によって変えたい場合、どうするべきか
+            // flavors.gradleに書いてあるサンプルあり
+            .baseUrl(GITHUB_API_URL)
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+
+    companion object {
+        val GITHUB_API_URL = "https://api.github.com"
+    }
 }
