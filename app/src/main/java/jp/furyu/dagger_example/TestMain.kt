@@ -1,6 +1,7 @@
 package jp.furyu.dagger_example
 
 import android.net.Network
+import android.util.Log
 import io.reactivex.Flowable
 import io.reactivex.Flowable.just
 import io.reactivex.Observable
@@ -30,6 +31,9 @@ class TestMain {
         Flowable.just("kentrino")
                 .observeOn(Schedulers.io())
                 .flatMap(gitHubProjectRepository::getProjectList)
+                .map { projectList ->
+                    Log.i("TestMain", projectList[0].name)
+                }
                 .publish().connect()
     }
 }
