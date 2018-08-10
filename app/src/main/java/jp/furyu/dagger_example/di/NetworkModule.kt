@@ -4,13 +4,18 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import jp.furyu.dagger_example.App
+import jp.furyu.dagger_example.api.GitHubApi
 import jp.furyu.dagger_example.util.ApplicationJsonAdapterFactory
 import jp.furyu.dagger_example.util.InstantAdapter
 import jp.furyu.dagger_example.util.Memory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -36,4 +41,21 @@ open class NetworkModule {
             .add(InstantAdapter.INSTANCE)
             .build()
 
+    // TODO: @Named(hoge)とあったのを消したが何だったのか
+    @Provides
+    @Singleton
+    @Named(GitHubApi.NAME)
+    fun provideRetrofitGithub(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
+            // TODO: このAPIのURLは環境によって変えたい場合、どうするべきか
+            // flavors.gradleに書いてあるサンプルあり
+            .baseUrl(GitHubApi.BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+
+    // TODO: Namedで複数providerがあった場合に対処できる？
+    @Provides
+    @Singleton
+    fun provideGitHubApi(@Named(GitHubApi.NAME) retrofit: Retrofit): GitHubApi = retrofit.create(GitHubApi::class.java)
 }
