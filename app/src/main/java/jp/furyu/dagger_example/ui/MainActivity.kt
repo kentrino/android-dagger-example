@@ -1,10 +1,8 @@
-package jp.furyu.dagger_example
+package jp.furyu.dagger_example.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import dagger.android.AndroidInjection
-import jp.furyu.dagger_example.repository.GitHubProjectRepository
-import javax.inject.Inject
+import jp.furyu.dagger_example.R
 
 class MainActivity : AppCompatActivity() {
 
