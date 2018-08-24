@@ -25,9 +25,12 @@ class App : DaggerApplication() {
     }
 
     // TODO: outとは
+    // NetworkModuleをそもそも突っ込んでいないが大丈夫なのか
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerAppComponent.builder().application(this).build()
     }
     // TODO: これは必要？
     protected open fun networkModule(): NetworkModule = NetworkModule()
+
+    // TODO: RepositoryModuleのツッコミかたがまだわかっていない。Constructorがないと言われる
 }
