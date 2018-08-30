@@ -8,11 +8,10 @@ import jp.furyu.dagger_example.App
 import javax.inject.Singleton
 
 
-@Module(includes = [AndroidInjectionModule::class])
+@Module(includes = [
+    ViewModelModule::class,
+    NetworkModule::class,
+    RepositoryModule::class
+])
 abstract class AppModule {
-    @Binds
-    @Singleton
-    // Singleton annotation isn't necessary (in this case since Application instance is unique)
-    // but is here for convention.
-    abstract fun application(app: App): App
 }

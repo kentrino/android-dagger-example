@@ -11,5 +11,6 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setFragment(R.id.frame_main_content, ::HomeFragment)
     }
 }
