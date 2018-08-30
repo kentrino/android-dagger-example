@@ -24,7 +24,7 @@ interface AppComponent : AndroidInjector<App> {
 
         fun build(): AppComponent
 
-        // fun network(network: NetworkModule): Builder
+        fun network(network: NetworkModule): Builder
         // fun database(database: DatabaseModule): Builder
     }
 
