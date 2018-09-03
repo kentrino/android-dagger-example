@@ -11,8 +11,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    NetworkModule::class,
-    RepositoryModule::class
+    ActivityBuilder::class,
+    AppModule::class
 ])
 interface AppComponent : AndroidInjector<App> {
     @Component.Builder
@@ -22,7 +22,7 @@ interface AppComponent : AndroidInjector<App> {
 
         fun build(): AppComponent
 
-        // fun network(network: NetworkModule): Builder
+        fun network(network: NetworkModule): Builder
         // fun database(database: DatabaseModule): Builder
     }
 
