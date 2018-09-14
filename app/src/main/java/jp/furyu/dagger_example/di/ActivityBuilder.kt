@@ -8,6 +8,6 @@ import jp.furyu.dagger_example.ui.MainActivity
 @Module
 internal abstract class ActivityBuilder {
     // fragmentはMainModule::classが提供
-    @ContributesAndroidInjector(modules = [MainModule::class])
+    @ContributesAndroidInjector(modules = [FragmentBuilder::class])
     internal abstract fun contributeMainInjector(): MainActivity
 }
