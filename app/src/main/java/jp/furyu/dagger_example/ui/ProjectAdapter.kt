@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
 
 class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
-    private var projectList: List<GitHubProject> by Delegates.observable(emptyList()) { _, old, new ->
+    var projectList: List<GitHubProject> by Delegates.observable(emptyList()) { _, old, new ->
         // TODO: dispatchUpdateToの役割
         calculateDiff(old, new).dispatchUpdatesTo(this)
     }
