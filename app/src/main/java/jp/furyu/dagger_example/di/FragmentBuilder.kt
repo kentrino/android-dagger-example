@@ -5,7 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import jp.furyu.dagger_example.ui.HomeFragment
 
 @Module
-internal abstract class MainModule {
+internal abstract class FragmentBuilder {
     @ContributesAndroidInjector
     internal abstract fun contributeTopFragmentInjector(): HomeFragment
 }

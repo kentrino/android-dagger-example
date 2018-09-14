@@ -13,13 +13,6 @@ import jp.furyu.dagger_example.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : DaggerAppCompatActivity() {
-    // TODO: 必要？
-//    companion object {
-//        fun start(context: Context) {
-//            context.startActivity(Intent(context, MainActivity::class.java))
-//        }
-//    }
-
     val binding: ActivityMainBinding by lazy {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
