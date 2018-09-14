@@ -22,7 +22,9 @@ interface AppComponent : AndroidInjector<App> {
 
         fun build(): AppComponent
 
-        fun network(network: NetworkModule): Builder
+        // TODO: なくても動くが、テストに必要？
+        // fun network(network: NetworkModule): Builder
+
         // fun database(database: DatabaseModule): Builder
     }
 
