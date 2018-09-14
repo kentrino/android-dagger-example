@@ -13,16 +13,11 @@ import jp.furyu.dagger_example.dto.GitHubProject
 import kotlin.properties.Delegates
 
 
-class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
+class ProjectAdapter(private var projectClickCallback: ProjectClickCallback?) : RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>() {
 
     var projectList: List<GitHubProject> by Delegates.observable(emptyList()) { _, old, new ->
         // TODO: dispatchUpdateToの役割
         calculateDiff(old, new).dispatchUpdatesTo(this)
-    }
-    private var projectClickCallback: ProjectClickCallback? = null
-
-    constructor(projectClickCallback: ProjectClickCallback?) {
-        this.projectClickCallback = projectClickCallback
     }
 
     // 必要なオーバーライドその1
@@ -52,7 +47,7 @@ class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
     // Kotlin function parameters are final. There is no val or final keyword because that's the default (and can't be changed).
 
-    fun calculateDiff(
+    private fun calculateDiff(
             old: List<GitHubProject>,
             new: List<GitHubProject>,
             detectMoves: Boolean = false
