@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
     private val projectClickCallback = object : ProjectClickCallback {
         override fun onClick(project: GitHubProject) {
             // TODO: Timberを使えと警告がでる。Timberの使い方
-            Log.i("HomeFragment", project.description)
+            Log.i("HomeFragment", project.description.toString())
 
             // TODO: 画面遷移
 //            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
